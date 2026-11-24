@@ -1,0 +1,78 @@
+---
+title: "Pingwiny"
+author: "Arkadiusz Feliksiak"
+output:
+  html_document:
+    toc: true
+---
+ 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(palmerpenguins)
+```
+ 
+## Zależność między masą ciała a długością płetwy
+ 
+```{r}
+ggplot(penguins, aes(x = body_mass_g, y = flipper_length_mm)) +
+  geom_line() +
+  labs(title = "Zależność między masą ciała a długością płetwy",
+       x = "Masa ciała (g)",
+       y = "Długość płetwy (mm)") +
+  theme_minimal()
+```
+ 
+## Histogram masy ciała
+ 
+```{r}
+ggplot(penguins, aes(x = body_mass_g)) +
+  geom_histogram() +
+  labs(title = "Rozkład masy ciała pingwinów",
+       x = "Masa ciała (g)",
+       y = "Liczba pingwinów") +
+  theme_classic()
+```
+ 
+## Wykres słupkowy gatunków
+ 
+```{r}
+ggplot(penguins, aes(x = species)) +
+  geom_bar() +
+  labs(title = "Liczba pingwinów poszczególnych gatunków",
+       x = "Gatunek",
+       y = "Liczebność") +
+  theme_bw()
+```
+ 
+Wykres słupkowy przedstawia zmienne kategoryczne (jakościowe, np. gatunek), gdzie słupki są od siebie oddzielone. Histogram służy do przedstawiania rozkładu zmiennych liczbowych ciągłych (np. masa ciała) podzielonych na przedziały (biny), przez co słupki stykają się ze sobą.
+ 
+## Wykresy rozrzutu
+ 
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, size = island)) +
+  geom_point() +
+  labs(title = "Masa ciała a długość płetwy (rozmiar = wyspa)",
+       x = "Długość płetwy (mm)",
+       y = "Masa ciała (g)",
+       color = "Gatunek",
+       size = "Wyspa") +
+  theme_light()
+```
+ 
+```{r}
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point() +
+  labs(title = "Masa ciała a długość płetwy (kształt = wyspa)",
+       x = "Długość płetwy (mm)",
+       y = "Masa ciała (g)",
+       color = "Gatunek",
+       shape = "Wyspa") +
+  theme_light()
+```
+ 
+## Informacja o sesji
+ 
+```{r}
+sessionInfo()
+```
